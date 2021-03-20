@@ -6,11 +6,15 @@ import FloatText from "../helper/FloatText";
 const Details = () => {
   const [detailsData, setDetailsData] = useState([
     {
+      key1: 1,
+      key2: 10,
       heading: "Live status of covid beds",
       para:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum pariatur quasi, culpa tenetur soluta iste cumque alias maxime repudiandae saepe, dolorum ullam magni. Totam ut debitis iste error ducimus tenetur!",
     },
     {
+      key1: 2,
+      key2: 20,
       heading: "Covid vaccine availability check",
       para:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum pariatur quasi, culpa tenetur soluta iste cumque alias maxime repudiandae saepe, dolorum ullam magni. Totam ut debitis iste error ducimus tenetur!",
@@ -28,8 +32,12 @@ const Details = () => {
         <div className="details__left">
           {detailsData.map((data) => (
             <>
-              <h3 className="heading-tertiary mb-2">{data.heading}</h3>
-              <p className="paragraph">{data.para}</p>
+              <h3 key={data.key1} className="heading-tertiary mb-2">
+                {data.heading}
+              </h3>
+              <p key={data.key2} className="paragraph">
+                {data.para}
+              </p>
             </>
           ))}
 

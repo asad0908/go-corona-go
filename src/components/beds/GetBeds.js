@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../css/beds/GetBeds.css";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { IconButton } from "@material-ui/core";
@@ -6,9 +6,26 @@ import { useHistory } from "react-router";
 import FloatText from "../helper/FloatText";
 import Checkbox from "../helper/Checkbox";
 import BedsData from "./BedsData";
+import db from "../../firebase";
+import FlipMove from "react-flip-move";
 
 const GetBeds = () => {
   const history = useHistory();
+
+  const [hospitalData, setHospitalData] = useState([]);
+
+  useEffect(() => {
+    db.collection("hospitalsData")
+      .orderBy("totalBeds", "desc")
+      .onSnapshot((snap) => {
+        setHospitalData(snap.docs.map((doc) => doc.data()));
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log(hospitalData);
+  }, [hospitalData]);
+
   return (
     <div className="getBeds">
       <IconButton onClick={() => history.push("/")} style={{ margin: "20px" }}>
@@ -38,10 +55,20 @@ const GetBeds = () => {
         <Checkbox data="VENTILATOR" />
       </div>
       <div className="getBeds__data">
-        <BedsData />
-        <BedsData />
-        <BedsData />
-        <BedsData />
+        <FlipMove typeName={null}>
+          {hospitalData?.map((hos) => (
+            <BedsData
+              key={hos.name}
+              name={hos.name}
+              address={hos.address}
+              contact={hos.contact}
+              google={hos.google}
+              generalBeds={hos.generalBeds}
+              icuBeds={hos.icuBeds}
+              website={hos.website}
+            />
+          ))}
+        </FlipMove>
       </div>
     </div>
   );

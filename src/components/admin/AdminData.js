@@ -20,18 +20,15 @@ const AdminData = () => {
   const updateBedDetails = () => {
     db.collection("hospitalsData")
       .doc(localStorage.getItem("docEmail"))
-      .collection("beds")
-      .doc("GENERAL")
       .update({
-        number: parseInt(generalBeds),
+        generalBeds: parseInt(generalBeds),
+        totalBeds: parseInt(generalBeds) + parseInt(icuBeds),
       });
 
     db.collection("hospitalsData")
       .doc(localStorage.getItem("docEmail"))
-      .collection("beds")
-      .doc("ICU")
       .update({
-        number: parseInt(icuBeds),
+        icuBeds: parseInt(icuBeds),
       });
 
     alert("UPDATE SUCCESSFULL");
@@ -40,16 +37,12 @@ const AdminData = () => {
   useEffect(() => {
     db.collection("hospitalsData")
       .doc(localStorage.getItem("docEmail"))
-      .collection("beds")
-      .doc("GENERAL")
       .get()
-      .then((doc) => setGeneralBeds(doc.data().number));
+      .then((doc) => setGeneralBeds(doc.data().generalBeds));
     db.collection("hospitalsData")
       .doc(localStorage.getItem("docEmail"))
-      .collection("beds")
-      .doc("ICU")
       .get()
-      .then((doc) => setIcuBeds(doc.data().number));
+      .then((doc) => setIcuBeds(doc.data().icuBeds));
   }, []);
 
   return (
@@ -129,24 +122,10 @@ export default AdminData;
 //         doc.docs.map((docData) => {
 //           db.collection("hospitalsData")
 //             .doc(docData.id)
-//             .collection("beds")
-//             .doc("GENERAL")
-//             .set({
-//               name: "GENERAL",
-//               number: 0,
-//             })
-//             .then(() => {
-//               console.log(docData.id, " updated");
-//             })
-//             .catch((err) => alert(err.message));
-
-//           db.collection("hospitalsData")
-//             .doc(docData.id)
-//             .collection("beds")
-//             .doc("ICU")
-//             .set({
-//               name: "ICU",
-//               number: 0,
+//             .update({
+//               icuBeds: 0,
+//               generalBeds: 0,
+//               totalBeds: parseInt(icuBeds) + parseInt(generalBeds),
 //             })
 //             .then(() => {
 //               console.log(docData.id, " updated");

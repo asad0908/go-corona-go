@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap");
+
+.nav {
+  width: 100%;
+  height: 17vh;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: #000;
+  transition: all 0.3s;
+  transition-timing-function: ease-in;
+  z-index: 100;
+}
+
+.nav__logo {
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+}
+
+.nav__show {
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(7.5px);
+  -webkit-backdrop-filter: blur(7.5px);
+}
+
+.nav__left ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav__left ul li {
+  margin-right: 3.2rem;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.nav__left ul li:hover {
+  border-bottom: 2px solid #113383;
+}
+
+.nav__right ul li {
+  margin-right: 3.2rem;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.nav__right ul li:hover {
+  border-bottom: 2px solid #113383;
+}
+
+.nav__right ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav__mobile {
+  display: none;
+}
+
+.nav__mobileHamburger {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .nav {
+    justify-content: left;
+  }
+  .setHeight {
+    height: 25vh;
+  }
+  .setHeight .nav__logo {
+    margin-bottom: 3rem;
+  }
+  .setHeight .nav__mobileHamburger {
+    margin-bottom: 3.5rem;
+  }
+  .nav__desktop {
+    display: none;
+  }
+  .nav__mobileHamburger {
+    margin-bottom: 8px;
+    padding: 20px;
+    margin-right: 10px;
+    display: inline;
+    color: #000;
+  }
+  .showNav {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+  }
+  .nav__mobile {
+    width: 100%;
+    position: absolute;
+    top: 5rem;
+  }
+
+  .showNav ul {
+    list-style: none;
+    color: #000;
+  }
+  .showNav ul li {
+    margin-top: 10px;
+  }
+}

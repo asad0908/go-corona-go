@@ -2,10 +2,10 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AdminData from "./components/admin/AdminData";
 import GetDataFromDb from "./components/admin/GetDataFromDb";
-
+import LandingPage from "./components/LandingPage";
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Router>
         <Switch>
           <Route path="/admin">
@@ -15,7 +15,7 @@ function App() {
             <GetDataFromDb />
           </Route>
           <Route path="/">
-            <h1>Main page covid 19 bed management</h1>
+            <LandingPage />
           </Route>
         </Switch>
       </Router>

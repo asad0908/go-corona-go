@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AdminData from "./components/admin/AdminData";
 import GetDataFromDb from "./components/admin/GetDataFromDb";
 import LandingPage from "./components/LandingPage";
+import GetBeds from "./components/beds/GetBeds";
 function App() {
   return (
     <div className="app">
@@ -13,6 +14,9 @@ function App() {
           </Route>
           <Route path="/check">
             <GetDataFromDb />
+          </Route>
+          <Route path="/beds">
+            <GetBeds />
           </Route>
           <Route path="/">
             <LandingPage />

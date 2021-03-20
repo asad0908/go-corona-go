@@ -1,0 +1,37 @@
+input[type="checkbox"] {
+  display: none;
+}
+
+.checkboxGroup label {
+  position: relative;
+  cursor: pointer;
+}
+
+.checkboxGroup label::before {
+  content: "";
+  background: url("../../images/check.svg");
+  background-position: center;
+  background-size: contain;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  left: -44px;
+  top: -5px;
+  transform: scale(0) rotateZ(180deg);
+  transition: all 0.4s cubic-bezier(0.54, 0.01, 0, 1.49);
+}
+
+input[type="checkbox"]:checked + label::before {
+  transform: scale(1) rotateZ(0deg);
+}
+
+.checkboxGroup label::after {
+  content: "";
+  border: 2px solid #1138f7;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: -42px;
+  top: 0px;
+  border-radius: 50%;
+}

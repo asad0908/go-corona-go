@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import "../../css/main/Nav.css";
 import MenuRoundedIcon from "@material-ui/icons/MenuRounded";
 import MenuOpenRoundedIcon from "@material-ui/icons/MenuOpenRounded";
+import { useHistory } from "react-router";
 
 const Nav = () => {
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -19,7 +21,7 @@ const Nav = () => {
       }
     });
     return () => {
-      window.removeEventListener("scroll");
+      window.removeEventListener("scroll", () => {});
     };
   }, []);
   return (
@@ -48,7 +50,7 @@ const Nav = () => {
         <div className="nav__left">
           <ul>
             <li>HOME</li>
-            <li>BEDS AVAILABILITY</li>
+            <li onClick={() => history.push("/beds")}>BEDS AVAILABILITY</li>
           </ul>
         </div>
       </div>

@@ -1,0 +1,38 @@
+.getBeds {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+}
+
+.getBeds__header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.getBeds__header img {
+  width: 40%;
+  height: 40%;
+}
+
+.getBeds__header--info {
+  width: 40%;
+}
+
+.checkbox__area {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.getBeds__data {
+  margin-top: 100px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

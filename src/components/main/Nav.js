@@ -61,7 +61,9 @@ const Nav = () => {
         <div className="nav__right">
           <ul>
             <li>COVID VACCINES</li>
-            <li>LIVE STATUS</li>
+            <li onClick={() => history.push("/hospital/login")}>
+              HOSPITAL ADMIN
+            </li>
           </ul>
         </div>
       </div>

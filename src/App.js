@@ -4,6 +4,8 @@ import AdminData from "./components/admin/AdminData";
 import GetDataFromDb from "./components/admin/GetDataFromDb";
 import LandingPage from "./components/LandingPage";
 import GetBeds from "./components/beds/GetBeds";
+import AdminLogin from "./components/admin/AdminLogin";
+import db from "./firebase";
 function App() {
   return (
     <div className="app">
@@ -17,6 +19,9 @@ function App() {
           </Route>
           <Route path="/beds">
             <GetBeds />
+          </Route>
+          <Route path="/hospital/login">
+            <AdminLogin />
           </Route>
           <Route path="/">
             <LandingPage />

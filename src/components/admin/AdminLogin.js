@@ -1,11 +1,12 @@
 import { Avatar, IconButton, makeStyles } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../css/admin/AdminLogin.css";
 import PersonIcon from "@material-ui/icons/Person";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { useHistory } from "react-router";
 import { auth } from "../../firebase";
+import { useSelector } from "react-redux";
 
 const AdminLogin = () => {
   const useStyles = makeStyles((theme) => ({
@@ -25,16 +26,27 @@ const AdminLogin = () => {
     if (e.key === "Enter") {
       if (username.length > 0 && password.length > 0) {
         auth
-          .createUserWithEmailAndPassword(username, password)
+          .signInWithEmailAndPassword(username, password)
           .then(() => {
-            console.log("User created");
+            localStorage.setItem("docEmail", username);
             setUsername("");
             setPassword("");
+            history.push("/admin/beds");
           })
           .catch((err) => alert(err.message));
       }
     }
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (user) {
+        history.push("/admin/beds");
+      }
+    }, 1000);
+  }, []);
+
+  const user = useSelector((state) => state.User.user);
 
   return (
     <div className="adminLogin">

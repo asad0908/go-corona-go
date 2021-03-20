@@ -1,83 +1,120 @@
-import React, { useRef, useState } from "react";
+import { IconButton } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import "../../css/admin/AdminData.css";
-import db from "../../firebase";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import RoomIcon from "@material-ui/icons/Room";
+import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
+import LanguageIcon from "@material-ui/icons/Language";
+import { Tooltip } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import db, { auth } from "../../firebase";
 
 const AdminData = () => {
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [google, setGoogle] = useState("");
-  const [contact, setContact] = useState("");
-  const [website, setWebsite] = useState("");
   const history = useHistory();
+  const [icuBeds, setIcuBeds] = useState(0);
+  const [generalBeds, setGeneralBeds] = useState(0);
 
-  const addData = () => {
-    if (name.length > 2) {
-      db.collection("hospitals")
-        .doc(name)
-        .set({
-          name: name,
-          address: address,
-          googlemaps: google,
-          contact: contact,
-          website: website,
-        })
-        .then(() => {
-          setName("");
-          setContact("");
-          setAddress("");
-          setWebsite("");
-          setGoogle("");
-          alert("Hospital added");
-        })
-        .catch((err) => alert(err.message));
-    }
+  const user = useSelector((state) => state.User.user);
+
+  const updateBedDetails = () => {
+    db.collection("hospitalsData")
+      .doc(localStorage.getItem("docEmail"))
+      .collection("beds")
+      .doc("GENERAL")
+      .update({
+        number: parseInt(generalBeds),
+      });
+
+    db.collection("hospitalsData")
+      .doc(localStorage.getItem("docEmail"))
+      .collection("beds")
+      .doc("ICU")
+      .update({
+        number: parseInt(icuBeds),
+      });
+
+    alert("UPDATE SUCCESSFULL");
   };
+
+  useEffect(() => {
+    db.collection("hospitalsData")
+      .doc(localStorage.getItem("docEmail"))
+      .collection("beds")
+      .doc("GENERAL")
+      .get()
+      .then((doc) => setGeneralBeds(doc.data().number));
+    db.collection("hospitalsData")
+      .doc(localStorage.getItem("docEmail"))
+      .collection("beds")
+      .doc("ICU")
+      .get()
+      .then((doc) => setIcuBeds(doc.data().number));
+  }, []);
 
   return (
     <div className="adminData">
-      <h2 className="text-center mb-5">Hospital Add</h2>
-      <div className="adminData__addHospitals">
-        <div className="hospital__add">
-          <input
-            onChange={(e) => setName(e.target.value)}
-            type="text"
-            value={name}
-            placeholder="hospital name"
-          />
-          <input
-            value={address}
-            type="text"
-            placeholder="hospital full address"
-            onChange={(e) => setAddress(e.target.value)}
-          />
-          <input
-            value={google}
-            type="text"
-            placeholder="google map location"
-            onChange={(e) => setGoogle(e.target.value)}
-          />
-          <input
-            onChange={(e) => setContact(e.target.value)}
-            value={contact}
-            type="text"
-            placeholder="contact number"
-          />
-          <input
-            value={website}
-            onChange={(e) => setWebsite(e.target.value)}
-            type="text"
-            placeholder="website"
-          />
-          <button onClick={addData} className="btn btn-primary">
-            Add location
-          </button>
-          <button
-            onClick={() => history.push("/check")}
-            className="mt-3 btn btn-secondary"
+      <div className="adminData__internal">
+        <div className="backButtton">
+          <IconButton
+            onClick={() => history.push("/")}
+            style={{ margin: "20px" }}
           >
-            Check Previous data
-          </button>
+            <ArrowBackIcon style={{ fill: "#fff" }} />
+          </IconButton>
+        </div>
+        <div className="adminData__left">
+          <img
+            src="https://i.ibb.co/ZThst65/doctor-man-Mesa-de-trabajo-1-removebg-preview.png"
+            alt="docterData"
+          />
+          <div className="adminData__hospital">
+            <h1>{user?.name}</h1>
+            <div className="adminData__buttons">
+              <Tooltip title="Map">
+                <IconButton
+                  onClick={() => window.open(user?.googlemaps)}
+                  style={{ color: "#fff" }}
+                >
+                  <RoomIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Contact">
+                <IconButton style={{ color: "#fff" }}>
+                  <PermContactCalendarIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Website">
+                <IconButton style={{ color: "#fff" }}>
+                  <LanguageIcon />
+                </IconButton>
+              </Tooltip>
+            </div>
+          </div>
+        </div>
+        <div className="adminData__right">
+          <div className="admin__input adminLogin__username">
+            <input
+              value={icuBeds}
+              onChange={(e) => setIcuBeds(e.target.value)}
+              type="number"
+              placeholder="ICU BEDS"
+            />
+          </div>
+          <div className="admin__input adminLogin__username">
+            <input
+              value={generalBeds}
+              onChange={(e) => setGeneralBeds(e.target.value)}
+              type="number"
+              placeholder="GENERAL BEDS"
+            />
+          </div>
+          <div className="admin__button">
+            <button onClick={updateBedDetails} className="btn btn-danger">
+              UPDATE
+            </button>
+          </div>
+          <button onClick={() => auth.signOut()}>LOGOUT</button>
         </div>
       </div>
     </div>
@@ -85,3 +122,35 @@ const AdminData = () => {
 };
 
 export default AdminData;
+
+// db.collection("hospitalsData")
+//       .get()
+//       .then((doc) => {
+//         doc.docs.map((docData) => {
+//           db.collection("hospitalsData")
+//             .doc(docData.id)
+//             .collection("beds")
+//             .doc("GENERAL")
+//             .set({
+//               name: "GENERAL",
+//               number: 0,
+//             })
+//             .then(() => {
+//               console.log(docData.id, " updated");
+//             })
+//             .catch((err) => alert(err.message));
+
+//           db.collection("hospitalsData")
+//             .doc(docData.id)
+//             .collection("beds")
+//             .doc("ICU")
+//             .set({
+//               name: "ICU",
+//               number: 0,
+//             })
+//             .then(() => {
+//               console.log(docData.id, " updated");
+//             })
+//             .catch((err) => alert(err.message));
+//         });
+//       });

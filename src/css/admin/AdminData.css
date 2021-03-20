@@ -1,18 +1,53 @@
 .adminData {
   width: 100%;
   height: 100vh;
-  background-color: wheat;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.hospital__add {
+.adminData__left {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.adminData__right {
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.hospital__add input {
-  margin-bottom: 20px;
-  padding: 5px 15px;
+.adminData__left img {
+  width: 80%;
+}
+
+.adminData__internal {
+  position: relative;
+  width: 92%;
+  height: 92%;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(25, 0, 135, 0.7),
+      rgba(162, 48, 237, 0.7)
+    ),
+    url("https://images.pexels.com/photos/3985168/pexels-photo-3985168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.adminData__hospital h1 {
+  color: #fff;
+}
+
+.adminData__buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }

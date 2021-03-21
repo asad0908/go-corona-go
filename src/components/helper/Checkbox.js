@@ -4,7 +4,7 @@ import "../../css/helper/Checkbox.css";
 const Checkbox = ({ data }) => {
   return (
     <div className="checkboxGroup">
-      <input type="checkbox" id={data} />
+      <input checked disabled type="checkbox" id={data} />
       <label htmlFor={data}>{data}</label>
     </div>
   );

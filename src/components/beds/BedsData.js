@@ -16,17 +16,26 @@ const BedsData = forwardRef(
         </div>
         <div className="bedsData__middle">
           <Tooltip title="Map">
-            <IconButton style={{ color: "#fff" }}>
+            <IconButton
+              onClick={() => window.open(google)}
+              style={{ color: "#fff" }}
+            >
               <RoomIcon />
             </IconButton>
           </Tooltip>
           <Tooltip title="Contact">
-            <IconButton style={{ color: "#fff" }}>
+            <IconButton
+              onClick={() => window.open(`tel:${contact}`)}
+              style={{ color: "#fff" }}
+            >
               <PermContactCalendarIcon />
             </IconButton>
           </Tooltip>
           <Tooltip title="Website">
-            <IconButton style={{ color: "#fff" }}>
+            <IconButton
+              onClick={() => window.open(website)}
+              style={{ color: "#fff" }}
+            >
               <LanguageIcon />
             </IconButton>
           </Tooltip>

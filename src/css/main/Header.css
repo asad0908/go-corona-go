@@ -3,11 +3,18 @@
 .header {
   width: 100%;
   height: 98vh;
-  background: url("https://images.unsplash.com/photo-1565101845408-7a1b0c6b4860?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(25, 0, 135, 0.7),
+      rgba(162, 48, 237, 0.7)
+    ),
+    url("https://images.unsplash.com/photo-1565101845408-7a1b0c6b4860?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+  animation: back 0.6s ease-in;
+  transition: all 0.6s ease-in;
 }
 
 .header__lines {
@@ -19,4 +26,26 @@
 .header__lines h1 {
   font-size: 5rem;
   font-family: "Courgette", cursive;
+  color: #fff;
+  animation: animate 1.2s ease-in;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes back {
+  0% {
+    background-size: 200%;
+  }
+  100% {
+    background-size: 100%;
+  }
 }

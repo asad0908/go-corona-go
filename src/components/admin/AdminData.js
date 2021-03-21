@@ -9,6 +9,7 @@ import LanguageIcon from "@material-ui/icons/Language";
 import { Tooltip } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import db, { auth } from "../../firebase";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const AdminData = () => {
   const history = useHistory();
@@ -48,6 +49,14 @@ const AdminData = () => {
   return (
     <div className="adminData">
       <div className="adminData__internal">
+        <div className="adminData__logout">
+          <Tooltip title="logout">
+            <IconButton onClick={() => auth.signOut()}>
+              <ExitToAppIcon fontSize="large" style={{ fill: "#fff" }} />
+            </IconButton>
+          </Tooltip>
+        </div>
+
         <div className="backButtton">
           <IconButton
             onClick={() => history.push("/")}
@@ -73,12 +82,18 @@ const AdminData = () => {
                 </IconButton>
               </Tooltip>
               <Tooltip title="Contact">
-                <IconButton style={{ color: "#fff" }}>
+                <IconButton
+                  onClick={() => window.open(`tel:${user?.contact}`)}
+                  style={{ color: "#fff" }}
+                >
                   <PermContactCalendarIcon />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Website">
-                <IconButton style={{ color: "#fff" }}>
+                <IconButton
+                  onClick={() => window.open(user?.website)}
+                  style={{ color: "#fff" }}
+                >
                   <LanguageIcon />
                 </IconButton>
               </Tooltip>
@@ -87,7 +102,9 @@ const AdminData = () => {
         </div>
         <div className="adminData__right">
           <div className="admin__input adminLogin__username">
+            <label for="icu">ICU</label>
             <input
+              id="icu"
               value={icuBeds}
               onChange={(e) => setIcuBeds(e.target.value)}
               type="number"
@@ -95,7 +112,9 @@ const AdminData = () => {
             />
           </div>
           <div className="admin__input adminLogin__username">
+            <label for="regular">REGULAR</label>
             <input
+              id="regular"
               value={generalBeds}
               onChange={(e) => setGeneralBeds(e.target.value)}
               type="number"
@@ -103,11 +122,13 @@ const AdminData = () => {
             />
           </div>
           <div className="admin__button">
-            <button onClick={updateBedDetails} className="btn btn-danger">
+            <button
+              onClick={updateBedDetails}
+              className="btn button__update mt-4"
+            >
               UPDATE
             </button>
           </div>
-          <button onClick={() => auth.signOut()}>LOGOUT</button>
         </div>
       </div>
     </div>

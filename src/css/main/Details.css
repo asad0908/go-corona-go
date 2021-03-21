@@ -1,6 +1,6 @@
 .details {
   width: 100%;
-  height: 80vh;
+  height: 90vh;
   text-align: center;
   overflow: hidden;
 }
@@ -83,7 +83,7 @@
 }
 
 .composition__photo:hover {
-  outline: 0.8rem solid #190087;
+  outline: 0.8rem solid #a230ed;
   transform: scale(1.05) translateY(0.5rem);
   box-shadow: 0 2.5rem 4rem rgba(#000, 0.5);
   z-index: 10;

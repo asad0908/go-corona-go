@@ -8,6 +8,7 @@ import AdminLogin from "./components/admin/AdminLogin";
 import { useDispatch } from "react-redux";
 import db, { auth } from "./firebase";
 import { loginUser, logoutUser } from "./components/redux/users/userActions";
+import PrivateRoute from "./components/PrivateRoute";
 
 const BedManagementApp = () => {
   const dispatch = useDispatch();
@@ -45,9 +46,7 @@ const BedManagementApp = () => {
         <Route path="/hospital/login">
           <AdminLogin />
         </Route>
-        <Route path="/admin/beds">
-          <AdminData />
-        </Route>
+        <PrivateRoute path="/admin/beds" component={AdminData} />
         <Route path="/">
           <LandingPage />
         </Route>

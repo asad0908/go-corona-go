@@ -51,3 +51,42 @@
   justify-content: space-around;
   align-items: center;
 }
+
+.adminData__logout {
+  position: fixed;
+  top: 6vh;
+  right: 5%;
+}
+
+.button__update {
+  background-image: linear-gradient(
+    to right,
+    #ece9e6 0%,
+    #ffffff 51%,
+    #ece9e6 100%
+  );
+}
+.button__update {
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: rgba(25, 0, 135, 0.7);
+  border-radius: 10px;
+  display: block;
+  font-weight: bold;
+}
+
+.button__update:hover {
+  background-position: right center; /* change the direction of the change here */
+  text-decoration: none;
+  color: rgba(25, 0, 135, 0.9);
+}
+
+.admin__input label {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: rgba(25, 0, 135, 0.7);
+  margin-top: 2.8px;
+  margin-right: 20px;
+}

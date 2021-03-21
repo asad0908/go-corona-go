@@ -16,6 +16,8 @@ const AdminLogin = () => {
     },
   }));
 
+  const user = useSelector((state) => state.User.user);
+
   const classes = useStyles();
   const history = useHistory();
 
@@ -29,9 +31,10 @@ const AdminLogin = () => {
           .signInWithEmailAndPassword(username, password)
           .then(() => {
             localStorage.setItem("docEmail", username);
+            history.push("/admin/beds");
+
             setUsername("");
             setPassword("");
-            history.push("/admin/beds");
           })
           .catch((err) => alert(err.message));
       }
@@ -43,10 +46,8 @@ const AdminLogin = () => {
       if (user) {
         history.push("/admin/beds");
       }
-    }, 1000);
-  }, []);
-
-  const user = useSelector((state) => state.User.user);
+    }, 100);
+  }, [user]);
 
   return (
     <div className="adminLogin">
@@ -62,7 +63,7 @@ const AdminLogin = () => {
         <div className="adminLogin__login">
           <Avatar
             className={classes.sizeAvatar}
-            src="https://www.flaticon.com/svg/vstatic/svg/3774/3774299.svg?token=exp=1616250830~hmac=a16539fae313da986072d80b85fdcb2a"
+            src="https://www.flaticon.com/svg/vstatic/svg/607/607414.svg?token=exp=1616289997~hmac=0d5b399f9830bded353c1d63aa0e2748"
           />
           <div className="admin__input adminLogin__username">
             <PersonIcon style={{ marginRight: "10px", fill: "#a230ed" }} />

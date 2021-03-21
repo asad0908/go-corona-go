@@ -62,7 +62,7 @@ const GetBeds = () => {
               name={hos.name}
               address={hos.address}
               contact={hos.contact}
-              google={hos.google}
+              google={hos.googlemaps}
               generalBeds={hos.generalBeds}
               icuBeds={hos.icuBeds}
               website={hos.website}

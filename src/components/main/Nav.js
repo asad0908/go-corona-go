@@ -39,11 +39,13 @@ const Nav = () => {
       <div className={`nav__mobile ${showMobileNav ? "showNav" : ""}`}>
         <ul>
           <li>HOME</li>
-          <li>BEDS AVAILABILITY</li>
+          <li onClick={() => history.push("/beds")}>BEDS AVAILABILITY</li>
         </ul>
         <ul>
           <li>COVID VACCINES</li>
-          <li>CONTACT</li>
+          <li onClick={() => history.push("/hospital/login")}>
+            HOSPITAL ADMIN
+          </li>
         </ul>
       </div>
       <div className="nav__desktop">

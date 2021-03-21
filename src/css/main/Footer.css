@@ -1,0 +1,36 @@
+.footer {
+  width: 100%;
+  height: 40vh;
+  margin-top: 40px;
+  clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(25, 0, 135, 0.7),
+      rgba(162, 48, 237, 0.7)
+    ),
+    url("https://images.pexels.com/photos/160994/family-outdoor-happy-happiness-160994.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  position: relative;
+}
+
+.nameFooter {
+  transition: all 0.2s ease-in;
+}
+
+.nameFooter:hover {
+  transform: skew(1.02deg) rotateX(20deg);
+  cursor: pointer;
+}
+
+.footer p {
+  position: absolute;
+  bottom: 0;
+  font-size: 1.3rem;
+}

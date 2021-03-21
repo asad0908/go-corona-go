@@ -12,7 +12,7 @@ const Footer = () => {
           onClick={() => window.open("https://www.instagram.com/khanhamid101/")}
           className="nameFooter"
         >
-          Hamid Khan
+          Hamidullah Khan
         </span>{" "}
         &{" "}
         <span

@@ -25,8 +25,10 @@ const BedsData = forwardRef(
           </Tooltip>
           <Tooltip title="Contact">
             <IconButton
-              onClick={() => window.open(`tel:${contact}`)}
-              style={{ color: "#fff" }}
+              onClick={() =>
+                `${contact.length > 0 && window.open(`tel:${contact}`)}`
+              }
+              style={{ color: `${contact.length > 0 ? "#fff" : "#888"}` }}
             >
               <PermContactCalendarIcon />
             </IconButton>

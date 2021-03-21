@@ -25,7 +25,7 @@ const Vaccines = () => {
           href=""
           onClick={() =>
             window.open(
-              "https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html"
+              "https://firebasestorage.googleapis.com/v0/b/gocoronago-62c3e.appspot.com/o/goCoronaGo.pdf?alt=media&token=8e6d9eb8-ecf7-46e4-8eda-374b589fb88f"
             )
           }
           className="btn-text"

@@ -16,6 +16,8 @@
 .paragraph {
   font-size: 1.1rem;
   text-align: left;
+  font-family: Raleway, sans-serif;
+  color: #777;
 }
 
 .paragraph:not(:last-child) {
